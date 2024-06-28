@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 73dda2275b40d0a41aa695e9ef9df63b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - PainelMenuP: {instanceID: 0}
+  - "PainelOp\xE7\xF5es": {instanceID: 0}
+  - Ambulance: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
