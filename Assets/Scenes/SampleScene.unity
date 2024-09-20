@@ -2988,7 +2988,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 217029783}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &217029787
 Camera:
   m_ObjectHideFlags: 0
@@ -11059,7 +11059,7 @@ GameObject:
   - component: {fileID: 1065766110}
   m_Layer: 0
   m_Name: Sphere Collider
-  m_TagString: Player
+  m_TagString: Player 2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11278,11 +11278,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 580096452765091907, guid: bf399059d7baec94fae75aa81fc5c3f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -60.89
+      value: -60.88
       objectReference: {fileID: 0}
     - target: {fileID: 580096452765091907, guid: bf399059d7baec94fae75aa81fc5c3f2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.77
+      value: 1.76
       objectReference: {fileID: 0}
     - target: {fileID: 580096452765091907, guid: bf399059d7baec94fae75aa81fc5c3f2, type: 3}
       propertyPath: m_LocalPosition.z
