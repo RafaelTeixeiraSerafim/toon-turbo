@@ -21,6 +21,8 @@ public class KartController : MonoBehaviour
     public int allowDrive = 1;
 
     [Header("Parameters")]
+    public string verticalInput = "Vertical";   // Nome do eixo para o movimento vertical
+    public string horizontalInput = "Horizontal"; // Nome do eixo para o movimento horizontal
     public float maxAcceleration;
     public float steering;
     public float drag;
@@ -42,20 +44,20 @@ public class KartController : MonoBehaviour
         transform.position = sphereRB.transform.position;
 
         //Accelerate
-        speedInput = Input.GetAxis("Vertical") * (maxAcceleration * (1f + coins / coinBoostDivider)) * allowDrive;
-        if (Input.GetAxis("Vertical") < 0)
+        speedInput = Input.GetAxis(verticalInput) * (maxAcceleration * (1f + coins / coinBoostDivider)) * allowDrive;
+        if (Input.GetAxis(verticalInput) < 0)
         {
             speedInput /= 2;
         }
 
-        turnInput = Input.GetAxis("Horizontal");
+        turnInput = Input.GetAxis(horizontalInput);
 
         currentSpeed = Mathf.SmoothStep(currentSpeed, speedInput, Time.deltaTime * 2f); speedInput = 0f;
 
         //Steering
         if (grounded)
         {
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * steering * Time.deltaTime * Input.GetAxis("Vertical"), 0f));
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * steering * Time.deltaTime * Input.GetAxis(verticalInput), 0f));
         }
 
         coinText.text = coins.ToString();
