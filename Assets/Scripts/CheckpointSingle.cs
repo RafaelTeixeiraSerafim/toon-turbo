@@ -6,25 +6,25 @@ using UnityEngine;
 public class CheckpointSingle : MonoBehaviour
 {
     private TrackCheckpoints trackCheckpoints;
-    private MeshRenderer meshRenderer;
-
-    private void Start()
-    {
-        meshRenderer = GetComponentInChildren<MeshRenderer>();
-    }
+    [SerializeField] private MeshRenderer meshRenderer;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<ColliderGetCoin>(out ColliderGetCoin colliderGetCoin))
+        if (other.TryGetComponent(out ColliderGetCoin colliderGetCoin))
         {
-            trackCheckpoints.PlayerThroughCheckpoint(this);
+            //trackCheckpoints.PlayerThroughCheckpoint(this);
+            if (this.CompareTag(colliderGetCoin.tag + " Collision")) 
+            {
+                Debug.Log(this.tag + "//////" + colliderGetCoin.tag);
+                meshRenderer.enabled = false;
+            }
         }
     }
 
     public void SetTrackCheckpoints(TrackCheckpoints trackCheckpoints)
     {
         this.trackCheckpoints = trackCheckpoints;
-        trackCheckpoints.OnRefreshCheckpointMesh += TrackCheckpoints_OnRefreshCheckpointMesh;
+        //trackCheckpoints.OnRefreshCheckpointMesh += TrackCheckpoints_OnRefreshCheckpointMesh;
     }
 
     private void TrackCheckpoints_OnRefreshCheckpointMesh(object sender, EventArgs e)
@@ -34,6 +34,6 @@ public class CheckpointSingle : MonoBehaviour
 
     private void OnDisable()
     {
-        trackCheckpoints.OnRefreshCheckpointMesh -= TrackCheckpoints_OnRefreshCheckpointMesh;
+        //trackCheckpoints.OnRefreshCheckpointMesh -= TrackCheckpoints_OnRefreshCheckpointMesh;
     }
 }

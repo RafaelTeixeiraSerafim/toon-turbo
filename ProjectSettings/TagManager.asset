@@ -8,6 +8,9 @@ TagManager:
   - Ramp
   - Coin
   - Obstacle
+  - Player 2
+  - Player Collision
+  - Player 2 Collision
   layers:
   - Default
   - TransparentFX
@@ -16,8 +19,8 @@ TagManager:
   - Water
   - UI
   - Minimap
-  - 
-  - 
+  - AroP1
+  - AroP2
   - 
   - 
   - 
