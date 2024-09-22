@@ -17,6 +17,7 @@ public class KartController : MonoBehaviour
     private float groundRoughness;
     private bool onRamp;
     private int coins = 0;
+    private int tokenLap = 0;
     private float gravity = 10f;
     public int allowDrive = 1;
 

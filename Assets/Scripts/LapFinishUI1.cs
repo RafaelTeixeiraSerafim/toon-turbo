@@ -9,22 +9,22 @@ public class LapFinishUI : MonoBehaviour
 {
     [SerializeField] private  TrackCheckpoints trackCheckpoints;
     [SerializeField] private  TextMeshProUGUI lapText;
-    [SerializeField] private  TextMeshProUGUI VictoryText;  // Add a TextMeshProUGUI for the message
-    [SerializeField] private  TextMeshProUGUI DefeatText;   // Add a TextMeshProUGUI for the message
-    [SerializeField] private  TextMeshProUGUI Timer;        // Add a TextMeshProUGUI for the message
+    [SerializeField] private  TextMeshProUGUI VictoryText;  
+    [SerializeField] private  TextMeshProUGUI DefeatText;  
+    [SerializeField] private  TextMeshProUGUI Timer;       
 
     private int lap = 0;
-    private float startTime; // Added to track race start time
+    private float startTime; 
 
     void Start()
     {
-        // Hide victoryText and defeatText initially
+        
         VictoryText.gameObject.SetActive(false);
         DefeatText.gameObject.SetActive(false);
 
         trackCheckpoints.OnPlayerFinishLap += TrackCheckpoints_OnPlayerFinishLap;
         lapText.text = $"{lap}/3";
-        startTime = Time.time;             // Start the timer when the race starts
+        startTime = Time.time;             
         Debug.Log("0"); 
         
     }
