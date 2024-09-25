@@ -21,7 +21,7 @@ public class KartController : MonoBehaviour
     private int tokenLap = 0;
     private float gravity = 10f;
     public int allowDrive = 1;
-    private int actualLap = 0;
+    private int actualLap = 1;
     private int checkpointsCollected = 0;
 
     [Header("Parameters")]
@@ -37,6 +37,7 @@ public class KartController : MonoBehaviour
     public Transform[] wheels;
 
     [SerializeField] private Enums.PlayerList actualPlayer;
+    [SerializeField] private LapFinishUI lapFinishUI;
     public Enums.PlayerList ActualPlayer { get => actualPlayer;}
     public int CheckpointsCollected { get => checkpointsCollected; }
 
@@ -175,7 +176,20 @@ public class KartController : MonoBehaviour
     {
         GameManager.Instance.TrackCheckpoints.ReactivateCheckpoints(ActualPlayer);
         checkpointsCollected = 0;
+
+        if (actualLap == 3)
+        {
+            Debug.Log("parabéns ai");
+            return;
+        }
+
         actualLap++;
+
+        // Atualiza o UI com a volta atual
+        if (lapFinishUI != null)
+        {
+            lapFinishUI.UpdateLapText(actualLap);
+        }
     }
 
 }
