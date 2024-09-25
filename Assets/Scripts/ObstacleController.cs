@@ -31,7 +31,6 @@ public class ObstacleController : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(respawnTime);
-
             Debug.Log("terminou");
             _collider.enabled = true;
             meshRenderer.enabled = true;

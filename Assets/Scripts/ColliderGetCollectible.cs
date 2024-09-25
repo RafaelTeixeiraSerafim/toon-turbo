@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class ColliderGetCollectible : MonoBehaviour
 {
+    [Header("Parameters")]
+    [SerializeField] private GameObject WrongWayP1;
+    [SerializeField] private GameObject WrongWayP2;
     private KartController kartController;
 
     private void Awake()
@@ -33,6 +36,15 @@ public class ColliderGetCollectible : MonoBehaviour
             else
             {
                 Debug.Log("Wrong Way");
+                switch (kartController.ActualPlayer)
+                {
+                case Enums.PlayerList.PlayerOne:
+                    WrongWayP1.gameObject.SetActive(true);
+                    break;
+                case Enums.PlayerList.PlayerTwo:
+                    WrongWayP2.gameObject.SetActive(true);
+                    break;
+                }
             }
         }
     }

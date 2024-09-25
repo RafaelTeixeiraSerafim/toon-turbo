@@ -38,6 +38,8 @@ public class KartController : MonoBehaviour
 
     [SerializeField] private Enums.PlayerList actualPlayer;
     [SerializeField] private LapFinishUI lapFinishUI;
+    [SerializeField] private GameObject WrongWayP1;
+    [SerializeField] private GameObject WrongWayP2;
     public Enums.PlayerList ActualPlayer { get => actualPlayer;}
     public int CheckpointsCollected { get => checkpointsCollected; }
 
@@ -45,6 +47,8 @@ public class KartController : MonoBehaviour
     {
         sphereRB.transform.parent = null;
         InvokeRepeating("SubtractCoin", 0f, 5f);
+        lapFinishUI.UpdateLapText(actualLap);
+
     }
 
     void Update()
@@ -161,6 +165,15 @@ public class KartController : MonoBehaviour
 
     public void CollectCheckpoint()
     {
+        switch (ActualPlayer)
+                {
+                case Enums.PlayerList.PlayerOne:
+                    WrongWayP1.gameObject.SetActive(false);
+                    break;
+                case Enums.PlayerList.PlayerTwo:
+                    WrongWayP2.gameObject.SetActive(false);
+                    break;
+                }
         checkpointsCollected++;
         if (CheckpointsCollected == 12)
         {
@@ -176,23 +189,27 @@ public class KartController : MonoBehaviour
     {
         GameManager.Instance.TrackCheckpoints.ReactivateCheckpoints(ActualPlayer);
         checkpointsCollected = 0;
-
-        if (actualLap >= 2) //Importante lembrarmos da ultimate do Bastion.
+        actualLap++;
+        lapFinishUI.UpdateLapText(actualLap);
+        if (actualLap == 3) //Importante lembrarmos da ultimate do Bastion.
         {
             Debug.Log("parabéns ai");
-            
             if (actualPlayer == Enums.PlayerList.PlayerOne)
             {
-                lapFinishUI.ShowVictoryText(1); 
+                lapFinishUI.ShowVictoryText(1);
+                lapFinishUI.ShowDefeatText(2);  
             }
             else if (actualPlayer == Enums.PlayerList.PlayerTwo)
             {
                 lapFinishUI.ShowVictoryText(2); 
-            
-            return;
+                lapFinishUI.ShowDefeatText(1); 
             }
+            return;
         }
-        actualLap++;
-        lapFinishUI.UpdateLapText(actualLap);
+        
+        
     }
+
+    
+    
 }
