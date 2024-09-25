@@ -5,21 +5,21 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    MeshCollider meshCollider;
-    MeshRenderer meshRenderer;
+    [SerializeField] private BoxCollider boxCollider;
+    [SerializeField] private GameObject visuals;
+    private float speed = 50.0f;
 
     private readonly float respawnTime = 5f;
 
-    void Start()
+    public void FixedUpdate()
     {
-        meshCollider = GetComponent<MeshCollider>();
-        meshRenderer = GetComponent<MeshRenderer>();
+        visuals.transform.rotation = Quaternion.Euler(visuals.transform.rotation.eulerAngles + new Vector3(0, -speed * Time.deltaTime, 0));
     }
 
     public void Hide()
     {
-        meshCollider.enabled = false;
-        meshRenderer.enabled = false;
+        boxCollider.enabled = false;
+        visuals.SetActive(false);
 
         StartCoroutine(Respawn());
     }
@@ -30,8 +30,8 @@ public class Coin : MonoBehaviour
         {
             yield return new WaitForSeconds(respawnTime);
 
-            meshCollider.enabled = true;
-            meshRenderer.enabled = true;
+            boxCollider.enabled = true;
+            visuals.SetActive(true);
 
             break;
         }
