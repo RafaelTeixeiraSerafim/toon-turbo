@@ -106,7 +106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b40ff9d130d95ef4fbf72cafb854f46c, type: 3}
       propertyPath: m_TagString
-      value: Player Collision
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -160,7 +160,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 7771237137266137441}
-  collisionTag: Player
+  collider: {fileID: 1041676905238769901}
+  playerToCollide: 0
 --- !u!23 &7771237137266137441 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -1990968323811559735, guid: b40ff9d130d95ef4fbf72cafb854f46c, type: 3}

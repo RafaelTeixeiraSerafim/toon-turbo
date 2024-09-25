@@ -22,7 +22,7 @@ public class LapFinishUI : MonoBehaviour
         VictoryText.gameObject.SetActive(false);
         DefeatText.gameObject.SetActive(false);
 
-        trackCheckpoints.OnPlayerFinishLap += TrackCheckpoints_OnPlayerFinishLap;
+       // trackCheckpoints.OnPlayerFinishLap += TrackCheckpoints_OnPlayerFinishLap;
         lapText.text = $"{lap}/3";
         startTime = Time.time;             
         Debug.Log("0"); 
@@ -58,6 +58,6 @@ public class LapFinishUI : MonoBehaviour
 
     private void OnDisable()
     {
-        trackCheckpoints.OnPlayerFinishLap -= TrackCheckpoints_OnPlayerFinishLap;
+     //   trackCheckpoints.OnPlayerFinishLap -= TrackCheckpoints_OnPlayerFinishLap;
     }
 }

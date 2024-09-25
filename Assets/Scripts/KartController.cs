@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.VisualScripting;
 using TMPro;
 using System.ComponentModel;
+using UnityEditor.Search;
 
 public class KartController : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class KartController : MonoBehaviour
     private int tokenLap = 0;
     private float gravity = 10f;
     public int allowDrive = 1;
+    private int actualLap = 0;
+    private int checkpointsCollected = 0;
 
     [Header("Parameters")]
     public string verticalInput = "Vertical";   // Nome do eixo para o movimento vertical
@@ -32,6 +35,10 @@ public class KartController : MonoBehaviour
     public TextMeshProUGUI coinText;
     public LayerMask layerMask;
     public Transform[] wheels;
+
+    [SerializeField] private Enums.PlayerList actualPlayer;
+    public Enums.PlayerList ActualPlayer { get => actualPlayer;}
+    public int CheckpointsCollected { get => checkpointsCollected; }
 
     void Start()
     {
@@ -149,4 +156,26 @@ public class KartController : MonoBehaviour
     {
         coins = Mathf.Max(coins - 1, 0);
     }
+
+
+    public void CollectCheckpoint()
+    {
+        checkpointsCollected++;
+        if (CheckpointsCollected == 12)
+        {
+           GameManager.Instance.TrackCheckpoints.ActivateFinalCheckpoint(ActualPlayer);
+        }
+        else if (CheckpointsCollected == 13) 
+        {
+            NextLap();
+        }
+    }
+
+    private void NextLap()
+    {
+        GameManager.Instance.TrackCheckpoints.ReactivateCheckpoints(ActualPlayer);
+        checkpointsCollected = 0;
+        actualLap++;
+    }
+
 }

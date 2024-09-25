@@ -8,8 +8,8 @@ public class TrackCheckpointsUI : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        trackCheckpoints.OnPlayerCorrectCheckpoint += TrackCheckpoints_OnPlayerCorrectCheckpoint;
-        trackCheckpoints.OnPlayerWrongCheckpoint += TrackCheckpoints_OnPlayerWrongCheckpoint;
+       // trackCheckpoints.OnPlayerCorrectCheckpoint += TrackCheckpoints_OnPlayerCorrectCheckpoint;
+       // trackCheckpoints.OnPlayerWrongCheckpoint += TrackCheckpoints_OnPlayerWrongCheckpoint;
 
         Hide();
     }
@@ -36,7 +36,7 @@ public class TrackCheckpointsUI : MonoBehaviour
 
     private void OnDisable()
     {
-        trackCheckpoints.OnPlayerCorrectCheckpoint -= TrackCheckpoints_OnPlayerCorrectCheckpoint;
-        trackCheckpoints.OnPlayerWrongCheckpoint -= TrackCheckpoints_OnPlayerWrongCheckpoint;
+     //   trackCheckpoints.OnPlayerCorrectCheckpoint -= TrackCheckpoints_OnPlayerCorrectCheckpoint;
+     //u   trackCheckpoints.OnPlayerWrongCheckpoint -= TrackCheckpoints_OnPlayerWrongCheckpoint;
     }
 }
