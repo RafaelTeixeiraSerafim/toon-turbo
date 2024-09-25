@@ -177,19 +177,22 @@ public class KartController : MonoBehaviour
         GameManager.Instance.TrackCheckpoints.ReactivateCheckpoints(ActualPlayer);
         checkpointsCollected = 0;
 
-        if (actualLap == 3)
+        if (actualLap >= 2) //Importante lembrarmos da ultimate do Bastion.
         {
             Debug.Log("parabéns ai");
+            
+            if (actualPlayer == Enums.PlayerList.PlayerOne)
+            {
+                lapFinishUI.ShowVictoryText(1); 
+            }
+            else if (actualPlayer == Enums.PlayerList.PlayerTwo)
+            {
+                lapFinishUI.ShowVictoryText(2); 
+            
             return;
+            }
         }
-
         actualLap++;
-
-        // Atualiza o UI com a volta atual
-        if (lapFinishUI != null)
-        {
-            lapFinishUI.UpdateLapText(actualLap);
-        }
+        lapFinishUI.UpdateLapText(actualLap);
     }
-
 }

@@ -21,7 +21,7 @@ public class LapFinishUI : MonoBehaviour
     {
         VictoryTextP1.gameObject.SetActive(false);
         DefeatTextP1.gameObject.SetActive(false);
-        
+
         VictoryTextP2.gameObject.SetActive(false);
         DefeatTextP2.gameObject.SetActive(false);
 
@@ -29,21 +29,36 @@ public class LapFinishUI : MonoBehaviour
         startTime = Time.time;
     }
 
-    // Método para atualizar o texto da volta
+    
     public void UpdateLapText(int currentLap)
     {
         lap = currentLap;
         lapText.text = $"{lap}/3";
     }
 
-    private IEnumerator FinishRace()
+    
+    public void ShowVictoryText(int player)
     {
-        yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(0);
+        if (player == 1)
+        {
+            VictoryTextP1.gameObject.SetActive(true);
+        }
+        else if (player == 2)
+        {
+            VictoryTextP2.gameObject.SetActive(true);
+        }
     }
 
-    private void OnDisable()
+    
+    public void ShowDefeatText(int player)
     {
-     //   trackCheckpoints.OnPlayerFinishLap -= TrackCheckpoints_OnPlayerFinishLap;
+        if (player == 1)
+        {
+            DefeatTextP1.gameObject.SetActive(true);
+        }
+        else if (player == 2)
+        {
+            DefeatTextP2.gameObject.SetActive(true);
+        }
     }
 }
