@@ -1,10 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Unity.VisualScripting;
+﻿using UnityEngine;
 using TMPro;
-using System.ComponentModel;
-using UnityEditor.Search;
 
 public class KartController : MonoBehaviour
 {
