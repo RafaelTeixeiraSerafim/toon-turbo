@@ -48,7 +48,6 @@ public class LapFinishUI : MonoBehaviour
             VictoryTextP2.gameObject.SetActive(true);
         }
     }
-
     
     public void ShowDefeatText(int player)
     {

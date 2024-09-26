@@ -190,10 +190,10 @@ public class KartController : MonoBehaviour
         GameManager.Instance.TrackCheckpoints.ReactivateCheckpoints(ActualPlayer);
         checkpointsCollected = 0;
         actualLap++;
-        lapFinishUI.UpdateLapText(actualLap);
-        if (actualLap == 3) //Importante lembrarmos da ultimate do Bastion.
+        Debug.Log(actualLap);
+        if (actualLap == 4) 
         {
-            Debug.Log("parabéns ai");
+            Debug.Log(actualLap);
             if (actualPlayer == Enums.PlayerList.PlayerOne)
             {
                 lapFinishUI.ShowVictoryText(1);
@@ -206,10 +206,6 @@ public class KartController : MonoBehaviour
             }
             return;
         }
-        
-        
+        lapFinishUI.UpdateLapText(actualLap);
     }
-
-    
-    
 }
