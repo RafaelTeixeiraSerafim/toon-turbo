@@ -35,6 +35,7 @@ public class Pausar : MonoBehaviour
     public void VoltarMenu()
     {
         Time.timeScale = 1;
+        Destroy(GameManager.Instance);
         SceneManager.LoadScene(0);
     }
 
@@ -51,6 +52,4 @@ public class Pausar : MonoBehaviour
             OpenPause();
         }
     }
-
-
 }

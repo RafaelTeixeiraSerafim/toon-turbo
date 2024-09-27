@@ -2,31 +2,41 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Instância única do GameManager
+    // Instï¿½ncia ï¿½nica do GameManager
     public static GameManager Instance { get; private set; }
 
     [SerializeField] private TrackCheckpoints trackCheckpoints;
     public TrackCheckpoints TrackCheckpoints { get => trackCheckpoints; }
+    public bool IsRaceFinished { get; private set; } = false;
 
-    // Método chamado no início da execução
+    // Mï¿½todo chamado no inï¿½cio da execuï¿½ï¿½o
     private void Awake()
     {
-        // Se a instância já existe e não é essa, destrua o GameObject para garantir o Singleton
-        if (Instance != null && Instance != this)
+        // Se a instï¿½ncia jï¿½ existe e nï¿½o ï¿½ essa, destrua o GameObject para garantir o Singleton
+        if (Instance == null)
         {
-            Destroy(gameObject);
-        }
-        else
-        {
-            // Define a instância única
-            Instance = this;
-            // Impede que o GameObject seja destruído ao mudar de cena
             DontDestroyOnLoad(gameObject);
+
         }
+        //else if (Instance != this)
+        //{
+        //    Destroy(Instance);
+        //}
+        //else
+        //{
+            // Define a instï¿½ncia ï¿½nica
+            Instance = this;
+            // Impede que o GameObject seja destruï¿½do ao mudar de cena
+        //}
     }
 
     public void PlayerFinishedLap(Enums.PlayerList player)
     {
       
+    }
+
+    public void SetIsRaceFinished(bool isRaceFinished)
+    {
+        this.IsRaceFinished = isRaceFinished;
     }
 }

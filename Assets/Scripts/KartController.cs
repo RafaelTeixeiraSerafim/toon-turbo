@@ -18,6 +18,7 @@ public class KartController : MonoBehaviour
     public int allowDrive = 1;
     private int actualLap = 1;
     private int checkpointsCollected = 0;
+    public bool hasFinishedRace { get; private set; } = false;
 
     [Header("Parameters")]
     public string verticalInput = "Vertical";   // Nome do eixo para o movimento vertical
@@ -35,7 +36,8 @@ public class KartController : MonoBehaviour
     [SerializeField] private LapFinishUI lapFinishUI;
     [SerializeField] private GameObject WrongWayP1;
     [SerializeField] private GameObject WrongWayP2;
-    public Enums.PlayerList ActualPlayer { get => actualPlayer;}
+    [SerializeField] private Timer timer;
+    public Enums.PlayerList ActualPlayer { get => actualPlayer; }
     public int CheckpointsCollected { get => checkpointsCollected; }
 
     void Start()
@@ -43,7 +45,6 @@ public class KartController : MonoBehaviour
         sphereRB.transform.parent = null;
         InvokeRepeating("SubtractCoin", 0f, 5f);
         lapFinishUI.UpdateLapText(actualLap);
-
     }
 
     void Update()
@@ -112,7 +113,7 @@ public class KartController : MonoBehaviour
 
             if (!hit.collider.CompareTag("Road"))
                 groundRoughness = 0.75f;
-            
+
             if (hit.collider.CompareTag("Ramp"))
             {
                 if (!onRamp)
@@ -161,20 +162,20 @@ public class KartController : MonoBehaviour
     public void CollectCheckpoint()
     {
         switch (ActualPlayer)
-                {
-                case Enums.PlayerList.PlayerOne:
-                    WrongWayP1.gameObject.SetActive(false);
-                    break;
-                case Enums.PlayerList.PlayerTwo:
-                    WrongWayP2.gameObject.SetActive(false);
-                    break;
-                }
+        {
+            case Enums.PlayerList.PlayerOne:
+                WrongWayP1.gameObject.SetActive(false);
+                break;
+            case Enums.PlayerList.PlayerTwo:
+                WrongWayP2.gameObject.SetActive(false);
+                break;
+        }
         checkpointsCollected++;
         if (CheckpointsCollected == 12)
         {
-           GameManager.Instance.TrackCheckpoints.ActivateFinalCheckpoint(ActualPlayer);
+            GameManager.Instance.TrackCheckpoints.ActivateFinalCheckpoint(ActualPlayer);
         }
-        else if (CheckpointsCollected == 13) 
+        else if (CheckpointsCollected == 13)
         {
             NextLap();
         }
@@ -185,22 +186,29 @@ public class KartController : MonoBehaviour
         GameManager.Instance.TrackCheckpoints.ReactivateCheckpoints(ActualPlayer);
         checkpointsCollected = 0;
         actualLap++;
-        Debug.Log(actualLap);
-        if (actualLap == 4) 
+        if (actualLap == 3)
         {
             Debug.Log(actualLap);
             if (actualPlayer == Enums.PlayerList.PlayerOne)
             {
-                lapFinishUI.ShowVictoryText(1);
-                lapFinishUI.ShowDefeatText(2);  
+                if (!GameManager.Instance.IsRaceFinished)
+                    lapFinishUI.ShowVictoryText(1);
+                else
+                    lapFinishUI.ShowDefeatText(1);
             }
             else if (actualPlayer == Enums.PlayerList.PlayerTwo)
             {
-                lapFinishUI.ShowVictoryText(2); 
-                lapFinishUI.ShowDefeatText(1); 
+                if (!GameManager.Instance.IsRaceFinished)
+                    lapFinishUI.ShowVictoryText(2);
+                else
+                    lapFinishUI.ShowDefeatText(2);
             }
+            timer.StopTimer();
+            hasFinishedRace = true;
+            GameManager.Instance.SetIsRaceFinished(true);
             return;
         }
-        lapFinishUI.UpdateLapText(actualLap);
+        if (!hasFinishedRace)
+            lapFinishUI.UpdateLapText(actualLap);
     }
 }

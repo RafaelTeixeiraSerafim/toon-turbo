@@ -25,7 +25,7 @@ public class LapFinishUI : MonoBehaviour
         VictoryTextP2.gameObject.SetActive(false);
         DefeatTextP2.gameObject.SetActive(false);
 
-        lapText.text = $"{lap}/3";
+        lapText.text = $"{lap}/2";
         startTime = Time.time;
     }
 
@@ -33,7 +33,7 @@ public class LapFinishUI : MonoBehaviour
     public void UpdateLapText(int currentLap)
     {
         lap = currentLap;
-        lapText.text = $"{lap}/3";
+        lapText.text = $"{lap}/2";
     }
 
     
